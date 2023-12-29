@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OptionsService } from '../services/options.service';
 
 @Component({
   selector: 'app-lifes-with-time',
@@ -6,18 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lifes-with-time.page.scss'],
 })
 export class LifesWithTimePage implements OnInit {
-
-  timeCountdown1: number = 180;
-  timeCountdown2: number = 180;
+  
+  minutes1: number = 0;
+  seconds1: number = 0;
+  minutes2: number = 0;
+  seconds2: number = 0;
 
   turn: number = 1;
 
   lifes1: number = 3;
   lifes2: number = 3;
 
-  constructor() { }
+
+  constructor(private optionsService: OptionsService) { }
 
   ngOnInit() {
+
+    this.optionsService.getMinutes().subscribe(minutes => {
+      this.minutes1 = minutes;
+      this.minutes2 = minutes;
+
+    });
+
+    this.optionsService.getSeconds().subscribe(seconds => {
+       this.seconds1 = seconds;
+       this.seconds2 = seconds;
+
+    });
+
+    this.optionsService.getLifes().subscribe(lifes => {
+      this.lifes1 = lifes;
+      this.lifes2 = lifes;
+    });
   }
 
   toggleTurn(player: number) {

@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>options</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">options</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<section class="middle">
+  <h1>
+    Opciones
+  </h1>
+</section>
+
+<section class="middle">
+  <button class="btn-nueva-partida">Nueva partida</button>
+</section>
+
+<section class="middle">
+  <h2>Tiempo del turno</h2>
+  <h3>{{minutes}} min {{seconds}} s</h3>
+  <ion-button id="timer-picker">Cambiar tiempo</ion-button>
+  <ion-picker trigger="timer-picker" [columns]="pickerColumnsTimer" [buttons]="pickerButtonsTimer"></ion-picker>
+  </section>
+
+
+<section class="middle">
+  <h2>Número de vidas</h2>
+  <h3>{{lifes}}</h3>
+  <ion-button id="lifes-picker">Cambiar número de vidas</ion-button>
+  <ion-picker trigger="lifes-picker" [columns]="pickerColumnsLifes" [buttons]="pickerButtonsLifes"></ion-picker>
+
+</section>
 </ion-content>
+

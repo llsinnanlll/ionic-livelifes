@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OptionsService } from '../services/options.service';
 
 @Component({
   selector: 'app-lifes-no-time',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LifesNoTimePage implements OnInit {
 
-  lifes1: number = 3;
-  lifes2: number = 3;
+  lifes1: number = 0;
+  lifes2: number = 0;
 
-  constructor() { }
+  constructor(private optionsService: OptionsService) { }
 
   ngOnInit() {
+    this.optionsService.getLifes().subscribe(lifes => {
+      this.lifes1 = lifes;
+      this.lifes2 = lifes;
+    });
   }
 
   removeLife1() {
