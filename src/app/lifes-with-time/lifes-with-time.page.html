@@ -1,15 +1,15 @@
 <ion-content [fullscreen]="true">
   <section class="rotate panel">
+    <button class="contador" [class.activo]="turn == 1" (click)="toggleTurn(1)">{{timeCountdown1}}</button>
     <h1>{{lifes1}} Vidas</h1>
     <article>
-      <button class="contador">{{timeCountdown1}}</button>
       <button class="operation" (click)="removeLife1()">Menos</button>
       <button class="operation" (click)="addLife1()">Más</button>
     </article>
   </section>
 
   <section class="panel">
-    <button class="contador">{{timeCountdown2}}</button>
+    <button class="contador" [class.activo]="turn == 2" (click)="toggleTurn(2)">{{timeCountdown2}}</button>
     <h1>{{lifes2}} Vidas</h1>
     <article>
       <button class="operation" (click)="removeLife2()">Menos</button>

@@ -10,12 +10,25 @@ export class LifesWithTimePage implements OnInit {
   timeCountdown1: number = 180;
   timeCountdown2: number = 180;
 
+  turn: number = 1;
+
   lifes1: number = 3;
   lifes2: number = 3;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleTurn(player: number) {
+
+    if (player == this.turn) {
+      if(this.turn == 1) {
+        this.turn = 2;
+      } else {
+        this.turn = 1;
+      }
+    }
   }
 
   removeLife1() {
