@@ -81,9 +81,9 @@ export class OptionsPage implements OnInit {
       this.lifes = lifes;
     });
   }
-  
+
     newGame(){
-      this.optionsService.resetTimers(this.minutes, this.seconds, this.lifes);
+      this.optionsService.resetTimers();
     }
 
   

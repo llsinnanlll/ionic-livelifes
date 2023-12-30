@@ -19,6 +19,8 @@ export class LifesWithTimePage implements OnInit {
   lifes1: number = 3;
   lifes2: number = 3;
 
+  round: number = 1;
+
   constructor(private optionsService: OptionsService) { }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class LifesWithTimePage implements OnInit {
       this.lifes1 = lifes;
       this.lifes2 = lifes;
     });
+
+    this.optionsService.getRound().subscribe(round => {
+      this.round = round;
+    });
   }
 
   toggleTurn(player: number) {
@@ -49,6 +55,7 @@ export class LifesWithTimePage implements OnInit {
         this.turn = 2;
       } else {
         this.turn = 1;
+        this.round++;
       }
     }
   }
@@ -115,6 +122,7 @@ export class LifesWithTimePage implements OnInit {
 toggleCountdown() {
   if (this.turn == 1) {
     clearInterval(this.optionsService.intervalId1);
+    this.optionsService.resetTimer1();
     this.countDownTimer2();
     //stop the function countdowntimer1
 
@@ -122,7 +130,7 @@ toggleCountdown() {
   } else {
     // If the countdown is not running, start it
     clearInterval(this.optionsService.intervalId2);
-
+    this.optionsService.resetTimer2();
     this.countDownTimer1();
   }
 }
