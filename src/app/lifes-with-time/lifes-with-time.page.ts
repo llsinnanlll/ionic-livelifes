@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OptionsService } from '../services/options.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-lifes-with-time',
@@ -17,7 +18,6 @@ export class LifesWithTimePage implements OnInit {
 
   lifes1: number = 3;
   lifes2: number = 3;
-
 
   constructor(private optionsService: OptionsService) { }
 
@@ -44,6 +44,7 @@ export class LifesWithTimePage implements OnInit {
   toggleTurn(player: number) {
 
     if (player == this.turn) {
+      this.toggleCountdown();
       if(this.turn == 1) {
         this.turn = 2;
       } else {
@@ -76,4 +77,54 @@ export class LifesWithTimePage implements OnInit {
       this.lifes2++
     }
   }
+
+  countDownTimer1() {
+    this.optionsService.intervalId1 = setInterval(() => {
+      if(this.seconds1 > 0){
+        this.seconds1--;
+      } else {
+        if(this.minutes1 > 0) {
+          this.seconds1 = 59;
+          this.minutes1--;
+        } else {
+          clearInterval(this.optionsService.intervalId1);
+        }
+      }
+    }, 1000);
+  }
+
+
+  countDownTimer2() {
+    this.optionsService.intervalId1 = setInterval(() => {
+      if(this.seconds2 > 0){
+        this.seconds2--;
+      } else {
+        if(this.minutes2 > 0) {
+          this.seconds2 = 59;
+          this.minutes2--;
+        } else {
+          clearInterval(this.optionsService.intervalId2);
+        }
+      }
+    }, 1000);
+  }
+
+
+
+
+toggleCountdown() {
+  if (this.turn == 1) {
+    clearInterval(this.optionsService.intervalId1);
+    this.countDownTimer2();
+    //stop the function countdowntimer1
+
+  
+  } else {
+    // If the countdown is not running, start it
+    clearInterval(this.optionsService.intervalId2);
+
+    this.countDownTimer1();
+  }
+}
+
 }
