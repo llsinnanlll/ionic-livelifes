@@ -95,7 +95,7 @@ export class LifesWithTimePage implements OnInit {
 
 
   countDownTimer2() {
-    this.optionsService.intervalId1 = setInterval(() => {
+    this.optionsService.intervalId2 = setInterval(() => {
       if(this.seconds2 > 0){
         this.seconds2--;
       } else {
