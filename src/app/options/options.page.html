@@ -8,7 +8,9 @@
 </section>
 
 <section class="middle">
-  <button (click)="newGame()" class="btn-nueva-partida">Nueva partida</button>
+  <ion-button id="new-game-toast" (click)="newGame()" class="btn-nueva-partida">Nueva partida</ion-button>
+  <ion-toast trigger="new-game-toast" message="Has comenzado una nueva partida." [duration]="5000"></ion-toast>
+
 </section>
 
 <section class="middle">
