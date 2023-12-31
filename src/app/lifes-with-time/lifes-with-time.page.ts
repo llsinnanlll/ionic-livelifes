@@ -20,6 +20,7 @@ export class LifesWithTimePage implements OnInit {
   lifes2: number = 3;
 
   round: number = 1;
+  firstRound: boolean = true;
 
   constructor(private optionsService: OptionsService) { }
 
@@ -45,6 +46,15 @@ export class LifesWithTimePage implements OnInit {
     this.optionsService.getRound().subscribe(round => {
       this.round = round;
     });
+    
+
+    this.optionsService.getFirstRound().subscribe(firstRound => {
+      this.firstRound = firstRound;
+    });
+
+    this.optionsService.getTurn().subscribe(turn => {
+      this.turn = turn;
+    });
   }
 
   toggleTurn(player: number) {
@@ -53,9 +63,13 @@ export class LifesWithTimePage implements OnInit {
       this.toggleCountdown();
       if(this.turn == 1) {
         this.turn = 2;
+        if (this.firstRound) {
+          this.firstRound = false;
+        } else {
+          this.round++;
+        }
       } else {
         this.turn = 1;
-        this.round++;
       }
     }
   }

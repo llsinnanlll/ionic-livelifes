@@ -11,6 +11,8 @@ export class OptionsService {
   private secondsSubject = new BehaviorSubject<number>(30);
   private lifesSubject = new BehaviorSubject<number>(3);
   private roundSubject = new BehaviorSubject<number>(1);
+  private firstRoundSubject = new BehaviorSubject<boolean>(true);
+  private turnSubject = new BehaviorSubject<number>(1);
 
 
   intervalId1: any;
@@ -50,6 +52,14 @@ export class OptionsService {
     this.lifesSubject.next(lifes);
   }
 
+  getFirstRound() : Observable<boolean> {
+    return this.firstRoundSubject.asObservable();
+  }
+
+  getTurn() : Observable<number> {
+    return this.turnSubject.asObservable();
+  }
+
   resetTimers() {
     clearInterval(this.intervalId1);
     clearInterval(this.intervalId2);
@@ -57,6 +67,8 @@ export class OptionsService {
     this.secondsSubject.next(this.secondsSubject.getValue());
     this.lifesSubject.next(this.lifesSubject.getValue());
     this.roundSubject.next(this.roundSubject.getValue());
+    this.firstRoundSubject.next(this.firstRoundSubject.getValue());
+    this.turnSubject.next(this.turnSubject.getValue());
   }
 
   resetTimer1() {
